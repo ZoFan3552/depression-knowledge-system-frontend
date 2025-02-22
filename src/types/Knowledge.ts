@@ -23,6 +23,7 @@ export interface Treatment {
 }
 
 export interface Depression {
+    d: { name: string; }[];
     name: string;
     symptoms: Set<Symptom>;
     causes: Set<Cause>;

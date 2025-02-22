@@ -2,21 +2,88 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
+import { ArrowLeftToLine } from 'lucide-react';
 
+/**
+ * 按钮样式类名组合
+ * 使用 Tailwind 类名组合实现按钮样式
+ */
+const BUTTON_CLASSES = {
+  base: [
+    // 基础样式
+    'bg-blue-600',
+    'text-white',
+    'font-semibold',
+    'rounded-lg',
+    'py-3',
+    'px-12',
+    'text-xl',
+    'mx-auto',
+    
+    // Flexbox 布局
+    'flex',
+    'items-center',
+    'justify-center',
+    'space-x-2',
+    
+    // 交互效果
+    'shadow-lg',
+    'transform',
+    'transition-all',
+    'duration-300',
+    
+    // 悬停状态
+    'hover:bg-blue-700',
+    'hover:scale-105',
+    'hover:shadow-xl',
+    
+    // 焦点状态
+    'focus:outline-none',
+    'focus:ring-2',
+    'focus:ring-blue-500',
+    'focus:ring-offset-2',
+    
+    // 适配深色模式
+    'dark:bg-blue-500',
+    'dark:hover:bg-blue-400',
+  ].join(' '),
+};
+
+/**
+ * 登录按钮组件
+ * 
+ * @component
+ * @description 一个带有图标的登录按钮，点击后跳转到登录页面
+ * 
+ * @example
+ * ```jsx
+ * <LoginButton />
+ * ```
+ */
 const LoginButton = () => {
   const router = useRouter();
 
+  /**
+   * 处理按钮点击事件
+   * @param {React.MouseEvent<HTMLButtonElement>} event - 点击事件对象
+   */
+  const handleClick = (event:React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    router.push('/login');
+  };
+
   return (
     <button 
-      className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-12 rounded-lg
-                 shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl
-                 flex items-center justify-center space-x-2 mx-auto text-xl"
-      onClick={() => router.push('/login')}
+      type="button"
+      className={BUTTON_CLASSES.base}
+      onClick={handleClick}
+      aria-label="进入系统"
     >
       <span>进入系统</span>
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-        <path fillRule="evenodd" d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z" clipRule="evenodd" />
-      </svg>
+      <ArrowLeftToLine 
+        className="h-5 w-5"
+        aria-hidden="true"
+      />
     </button>
   );
 };
