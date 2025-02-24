@@ -8,20 +8,8 @@ import ColorPicker from "../common/ColorPicker";
 import Dropdown from "../common/Dropdown";
 import GraphLegend from "./GraphLegend";
 import { getNodesColors, getNodesTypes } from "@/utils/GraphUtil";
+import { showToast } from "../common/Toast";
 
-/**
- * Force Graph 组件的属性接口
- * @interface ForceGraphProps
- * @property {number} [width=800] - 图表宽度
- * @property {number} [height=800] - 图表高度
- * @property {GraphNode[]} nodes - 节点数据数组
- * @property {GraphLink[]} links - 连接线数据数组
- * @property {Record<string, string>} nodeColorConfig - 节点类型对应的颜色配置
- * @property {Object} [initialParams] - 初始化参数
- * @property {number} [initialParams.nodeRadius=10] - 节点半径
- * @property {number} [initialParams.linkDistance=100] - 连接线长度
- * @property {number} [initialParams.chargeStrength=-600] - 节点间斥力强度
- */
 interface ForceGraphProps {
   width?: number;
   height?: number;
@@ -363,7 +351,11 @@ const ForceGraph: React.FC<ForceGraphProps> = ({
   /**
    * 更新节点颜色配置
    */
-  const handleChangeNodeColorConfig = useCallback(() => {
+  //waring：带有判断条件的函数不应该使用 useCallback 缓存，否则会有 bug
+  const handleChangeNodeColorConfig = () => {
+    if(nodeStyles.currentType === 'NULL'){
+      return;
+    }
     setNodeStyles(prev => ({
       ...prev,
       colorConfig: {
@@ -371,7 +363,8 @@ const ForceGraph: React.FC<ForceGraphProps> = ({
         [prev.currentType]: prev.currentColor
       }
     }));
-  }, []);
+    showToast("修改成功！", 3000);
+  };
 
   return (
     <div className="relative w-full h-full">

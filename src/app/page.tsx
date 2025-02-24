@@ -15,7 +15,7 @@ const Home = () => {
               </svg>
             </div>
             <h1 className="text-5xl font-bold text-blue-800 tracking-tight">
-              抑郁症专家知识系统
+              抑郁症评估专家知识系统
             </h1>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               专业的抑郁症诊断与治疗知识库，为医疗工作者提供决策支持

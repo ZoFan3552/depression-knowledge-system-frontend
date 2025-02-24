@@ -6,52 +6,44 @@ import { GithubPicker, ColorResult } from 'react-color';
  * 包含常用的网络图配色方案
  */
 const PREDEFINED_COLORS = [
-    // 基础色系
-    '#B80000', // 深红
-    '#DB3E00', // 红橙
-    '#FF6F61', // 珊瑚红 
-    '#FFA500', // 橙色 
-    
-    // 黄色系
-    '#FCCB00', // 明黄
-    '#FFD700', // 金色 
-  
-    // 绿色系
-    '#008B02', // 深绿
-    '#7CFC00', // 草坪绿 
-    '#98FB98', // 薄荷绿 
-    '#3CB371', // 海洋绿 
-  
-    // 蓝色系
-    '#006B76', // 青蓝
-    '#1273DE', // 亮蓝
-    '#004DCF', // 深蓝
-    '#87CEEB', // 天蓝 
-    '#4169E1', // 皇家蓝 
-  
-    // 紫色系
-    '#5300EB', // 深紫
-    '#DA70D6', // 兰花紫 
-    '#EE82EE', // 浅紫 
-  
-    // 中性色
-    '#373737', // 深灰
-    '#7B7B7B', // 浅灰
-    '#D3D3D3', // 淡灰 
-    
-    // 特殊色
-    '#FF69B4', // 粉红 
-    '#FF1493'  // 深粉 
-  ];
+  // 基础色系
+  '#B80000', // 深红
+  '#DB3E00', // 红橙
+  '#FF6F61', // 珊瑚红 
+  '#FFA500', // 橙色 
 
-/**
- * 颜色选择器组件的属性接口
- * @interface ColorPickerProps
- * @property {(value: string) => void} setCurrentColor - 颜色改变时的回调函数
- * @property {string} [defaultColor] - 默认选中的颜色
- * @property {string} [title] - 组件标题
- * @property {string[]} [colors] - 自定义颜色选项
- */
+  // 黄色系
+  '#FCCB00', // 明黄
+  '#FFD700', // 金色 
+
+  // 绿色系
+  '#008B02', // 深绿
+  '#7CFC00', // 草坪绿 
+  '#98FB98', // 薄荷绿 
+  '#3CB371', // 海洋绿 
+
+  // 蓝色系
+  '#006B76', // 青蓝
+  '#1273DE', // 亮蓝
+  '#004DCF', // 深蓝
+  '#87CEEB', // 天蓝 
+  '#4169E1', // 皇家蓝 
+
+  // 紫色系
+  '#5300EB', // 深紫
+  '#DA70D6', // 兰花紫 
+  '#EE82EE', // 浅紫 
+
+  // 中性色
+  '#373737', // 深灰
+  '#7B7B7B', // 浅灰
+  '#D3D3D3', // 淡灰 
+
+  // 特殊色
+  '#FF69B4', // 粉红 
+  '#FF1493'  // 深粉 
+];
+
 interface ColorPickerProps {
   setCurrentColor: (value: string) => void;
   defaultColor?: string;
@@ -87,7 +79,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
    */
   const ColorPreview = () => (
     <div className="flex items-center gap-2">
-      <div 
+      <div
         className="w-6 h-6 rounded border border-gray-300"
         style={{ backgroundColor: selectedColor }}
         title={selectedColor}
@@ -104,7 +96,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
       <h2 className="text-xl font-bold text-gray-800">
         {title}
       </h2>
-      
+
       <div className="relative group">
         <GithubPicker
           color={selectedColor}
@@ -113,7 +105,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
           className="shadow-lg !bg-white"
           triangle="hide"
         />
-        
+
         {/* 添加容器投影和圆角 */}
         <div className="absolute inset-0 -m-1 rounded-lg bg-gray-50 -z-10" />
       </div>

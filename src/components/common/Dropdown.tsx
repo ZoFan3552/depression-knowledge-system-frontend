@@ -1,26 +1,10 @@
 import React, { useState, useCallback } from 'react';
 
-/**
- * 下拉选项的类型定义
- * @interface Option
- * @property {string} label - 显示给用户的选项文本
- * @property {string} value - 选项的实际值
- */
 type Option = {
   label: string;
   value: string;
 };
 
-/**
- * 下拉框组件的属性接口
- * @interface DropdownProps
- * @property {Option[]} items - 下拉选项数组
- * @property {string} [defaultValue] - 默认选中的值
- * @property {(value: string) => void} onChange - 选项改变时的回调函数
- * @property {string} [placeholder] - 占位文本
- * @property {string} [className] - 自定义样式类名
- * @property {boolean} [disabled] - 是否禁用下拉框
- */
 interface DropdownProps {
   items: Option[];
   defaultValue?: string;

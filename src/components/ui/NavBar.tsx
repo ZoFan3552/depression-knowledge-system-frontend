@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { ClipboardPlus } from "lucide-react";
 
 /**
@@ -41,7 +42,7 @@ const STYLES = {
     "z-50",
     "shadow-lg",
   ].join(" "),
-  
+
   container: [
     "max-w-7xl",
     "mx-auto",
@@ -49,20 +50,20 @@ const STYLES = {
     "sm:px-6",
     "lg:px-8",
   ].join(" "),
-  
+
   wrapper: [
     "flex",
     "justify-between",
     "items-center",
     "h-16",
   ].join(" "),
-  
+
   logoSection: [
     "flex",
     "items-center",
     "space-x-4",
   ].join(" "),
-  
+
   title: [
     "text-2xl",
     "sm:text-3xl",
@@ -70,13 +71,13 @@ const STYLES = {
     "font-semibold",
     "whitespace-nowrap",
   ].join(" "),
-  
+
   navLinks: [
     "flex",
     "space-x-2",
     "sm:space-x-4",
   ].join(" "),
-  
+
   navItem: [
     "hover:bg-blue-700",
     "px-2",
@@ -112,7 +113,7 @@ const NavBar: React.FC = () => {
         <div className={STYLES.wrapper}>
           {/* Logo区域 */}
           <div className={STYLES.logoSection}>
-            <ClipboardPlus 
+            <ClipboardPlus
               size={36}
               aria-hidden="true"
               className="shrink-0"
@@ -125,18 +126,13 @@ const NavBar: React.FC = () => {
           {/* 导航链接 */}
           <div className={STYLES.navLinks}>
             {NAV_ITEMS.map((item) => (
-              <a
+              <Link
                 key={item.href}
                 href={item.href}
-                className={STYLES.navItem}
-                aria-current={
-                  typeof window !== 'undefined' && 
-                  window.location.pathname === item.href ? 
-                  'page' : undefined
-                }
+                passHref
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
           </div>
         </div>

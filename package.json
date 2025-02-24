@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.0",
     "bootstrap-icons": "^1.11.3",
     "d3": "^7.9.0",
     "lucide-react": "^0.475.0",

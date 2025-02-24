@@ -24,18 +24,6 @@ const SLIDER_CONFIGS = {
   }
 } as const;
 
-/**
- * 控制面板组件的属性接口
- * @interface PanelProps
- * @property {number} nodeRadius - 节点半径大小
- * @property {(value: number) => void} setNodeRadius - 设置节点半径的回调函数
- * @property {number} linkDistance - 连接线长度
- * @property {(value: number) => void} setLinkDistance - 设置连接线长度的回调函数
- * @property {number} chargeStrength - 节点间排斥力强度
- * @property {(value: number) => void} setChargeStrength - 设置排斥力强度的回调函数
- * @property {boolean} isShowLinkLabel - 是否显示连接线标签
- * @property {(value: boolean) => void} setIsShowLinkLabel - 设置是否显示连接线标签的回调函数
- */
 interface PanelProps {
   nodeRadius: number;
   setNodeRadius: (value: number) => void;
