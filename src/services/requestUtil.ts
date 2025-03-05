@@ -8,9 +8,9 @@ export async function postRequest<T>(baseURL: string, url: string, data?: any, c
         baseURL: baseURL,
     });
     let tokenName = localStorage.getItem("tokenName");
-    tokenName = tokenName ? tokenName : '';
+    tokenName = tokenName ? tokenName : 'NULL';
     let tokenValue = localStorage.getItem("tokenValue");
-    tokenValue = tokenValue ? tokenValue : '';
+    tokenValue = tokenValue ? tokenValue : 'NULL';
     const newConfig = {
         ...config,
         headers:{
