@@ -8,15 +8,15 @@ export type ToastProps = {
     message: string;
     duration?: number;
     onClose?: () => void;
-    type?: 'info' | 'success' | 'error'; // 新增 type 属性
+    type?: 'info' | 'success' | 'error';
 };
 
 export type ToastType = {
     id: string;
     message: string;
     duration?: number;
-    type?: 'info' | 'success' | 'error'; // 新增 type 属性
-    onCloseCallback?: () => void; // 新增回调函数属性
+    type?: 'info' | 'success' | 'error';
+    onCloseCallback?: () => void;
 };
 
 // 创建一个全局存储 toast 的容器
@@ -30,10 +30,10 @@ const notifyListeners = () => {
 
 // 添加新的 toast
 export const showToast = (
-    message: string, 
-    duration: number = 3000, 
-    type: 'info' | 'success' | 'error' = 'info', 
-    onCloseCallback?: () => void // 新增回调函数参数
+    message: string,
+    duration: number = 3000,
+    type: 'info' | 'success' | 'error' = 'info',
+    onCloseCallback?: () => void
 ) => {
     const id = Math.random().toString(36).substring(2, 9);
     toasts.push({ id, message, duration, type, onCloseCallback });
@@ -61,6 +61,27 @@ export const removeToast = (id: string) => {
     notifyListeners();
 };
 
+// 创建 Toast 组件容器以确保 z-index 足够高
+let toastContainerElement: HTMLDivElement | null = null;
+
+// 初始化 Toast 容器
+const getToastContainer = () => {
+    if (!toastContainerElement && typeof document !== 'undefined') {
+        toastContainerElement = document.createElement('div');
+        toastContainerElement.id = 'toast-container';
+        // 设置最高层级的样式
+        toastContainerElement.style.position = 'fixed';
+        toastContainerElement.style.top = '0';
+        toastContainerElement.style.left = '0';
+        toastContainerElement.style.width = '100%';
+        toastContainerElement.style.height = '0';
+        toastContainerElement.style.zIndex = '9999'; // 设置非常高的 z-index
+        toastContainerElement.style.pointerEvents = 'none'; // 允许点击穿透
+        document.body.appendChild(toastContainerElement);
+    }
+    return toastContainerElement;
+};
+
 const Toast: React.FC<ToastProps> = ({ message, onClose, type = 'info' }) => {
     const getToastStyles = () => {
         switch (type) {
@@ -75,7 +96,7 @@ const Toast: React.FC<ToastProps> = ({ message, onClose, type = 'info' }) => {
     };
 
     return (
-        <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 animate-toast-slide-down">
+        <div className="fixed top-4 left-1/2 transform -translate-x-1/2 animate-toast-slide-down" style={{ pointerEvents: 'auto' }}>
             <div className={`rounded-lg shadow-lg px-6 py-3 flex items-center gap-4 ${getToastStyles()}`}>
                 <span>{message}</span>
                 <button
@@ -94,7 +115,9 @@ export const ToastContainer: React.FC = () => {
     const [portalContainer, setPortalContainer] = useState<Element | null>(null);
 
     useEffect(() => {
-        setPortalContainer(document.body);
+        // 使用专门的 toast 容器而不是 document.body
+        setPortalContainer(getToastContainer());
+
         const listener = (newToasts: ToastType[]) => {
             setCurrentToasts(newToasts);
         };
@@ -107,13 +130,13 @@ export const ToastContainer: React.FC = () => {
     if (!portalContainer) return null;
 
     return createPortal(
-        <div className="relative">
+        <div>
             {currentToasts.map(toast => (
                 <Toast
                     key={toast.id}
                     message={toast.message}
                     duration={toast.duration}
-                    type={toast.type} // 传递 type
+                    type={toast.type}
                     onClose={() => removeToast(toast.id)}
                 />
             ))}

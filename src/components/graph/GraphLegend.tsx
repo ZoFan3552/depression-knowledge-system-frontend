@@ -1,32 +1,27 @@
+import { GraphNode } from '@/types/Graph';
 import React from 'react';
 
-/**
- * 图例项的类型定义
- * @interface LegendItem
- * @property {string} type - 节点类型
- * @property {string} color - 节点颜色
- */
 interface LegendItem {
   type: string;
   color: string;
 }
 
-/**
- * 图例组件的属性接口
- * @interface LegendProps
- * @property {Record<string, string>} nodeColorConfig - 节点类型到颜色的映射
- */
 interface LegendProps {
-  nodeColorConfig: Record<string, string>;
+  nodes: GraphNode[];
 }
 
 /**
  * 力导向图图例组件
  * 横向展示节点类型及其对应的颜色
  */
-const GraphLegend: React.FC<LegendProps> = ({ nodeColorConfig }) => {
+const GraphLegend: React.FC<LegendProps> = ({ nodes }) => {
   // 将配置对象转换为图例项数组
-  const legendItems: LegendItem[] = Object.entries(nodeColorConfig).map(([type, color]) => ({
+  const config = nodes.reduce((acc, node) => {
+    acc[node.type] = node.color;
+    return acc;
+  }, {} as Record<string, string>);
+
+  const legendItems: LegendItem[] = Object.entries(config).map(([type, color]) => ({
     type,
     color
   }));

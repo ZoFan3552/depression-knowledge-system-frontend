@@ -1,6 +1,6 @@
 import { ApiResponse } from "@/types/Response";
 import { User } from "@/types/User";
-import { postRequest } from "./requestUtil";
+import { postRequest } from "../utils/RequestUtil";
 
 const API_BASE_URL = 'http://localhost:8080/user';
 

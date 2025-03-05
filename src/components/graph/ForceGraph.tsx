@@ -15,7 +15,6 @@ interface ForceGraphProps {
   height?: number;
   nodes: GraphNode[];
   links: GraphLink[];
-  nodeColorConfig: Record<string, string>;
   initialParams?: {
     nodeRadius: number;
     linkDistance: number;
@@ -32,15 +31,7 @@ const DEFAULT_PARAMS = {
   chargeStrength: -600
 };
 
-/**
- * Force Graph 组件
- * 基于 D3.js 实现的交互式网络图可视化组件
- * 支持节点拖拽、缩放、平移等操作
- * 
- * @component
- * @param {ForceGraphProps} props - 组件属性
- * @returns {React.ReactElement} Force Graph 组件
- */
+
 const ForceGraph: React.FC<ForceGraphProps> = ({
   width = 800,
   height = 800,
@@ -351,9 +342,8 @@ const ForceGraph: React.FC<ForceGraphProps> = ({
   /**
    * 更新节点颜色配置
    */
-  //waring：带有判断条件的函数不应该使用 useCallback 缓存，否则会有 bug
   const handleChangeNodeColorConfig = () => {
-    if(nodeStyles.currentType === 'NULL'){
+    if (nodeStyles.currentType === 'NULL') {
       return;
     }
     setNodeStyles(prev => ({
@@ -371,7 +361,7 @@ const ForceGraph: React.FC<ForceGraphProps> = ({
       {/* 控制面板 */}
       <div className="absolute left-4 top-1/2 -translate-y-1/2 bg-white p-4 rounded-lg shadow-lg space-y-4 z-10">
         <Dropdown
-        placeholder="请选择一个结点类型"
+          placeholder="请选择一个结点类型"
           items={graphConfig.nodeTypes.map(n => ({ label: n, value: n }))}
           defaultValue={''}
           onChange={(type) => setNodeStyles(prev => ({ ...prev, currentType: type }))}
@@ -434,7 +424,7 @@ const ForceGraph: React.FC<ForceGraphProps> = ({
 
       {/* 图例 */}
       <div className="absolute left-1/2 -translate-x-1/2 top-20">
-        <GraphLegend nodeColorConfig={nodeStyles.colorConfig} />
+        <GraphLegend nodes={nodes} />
       </div>
 
       {/* SVG 容器 */}
