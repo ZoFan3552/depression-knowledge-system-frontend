@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback } from "react";
 
 type Option = {
   label: string;
@@ -20,11 +20,11 @@ interface DropdownProps {
  */
 const Dropdown: React.FC<DropdownProps> = ({
   items,
-  defaultValue = '',
+  defaultValue = "",
   onChange,
-  placeholder = '请选择一个选项',
-  className = '',
-  disabled = false
+  placeholder = "请选择一个选项",
+  className = "",
+  disabled = false,
 }) => {
   // 选中值的状态管理
   const [selectedValue, setSelectedValue] = useState<string>(defaultValue);
@@ -33,11 +33,14 @@ const Dropdown: React.FC<DropdownProps> = ({
    * 处理选项改变事件
    * 更新内部状态并触发外部回调
    */
-  const handleSelectChange = useCallback((event: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = event.target.value;
-    setSelectedValue(value);
-    onChange(value);
-  }, [onChange]);
+  const handleSelectChange = useCallback(
+    (event: React.ChangeEvent<HTMLSelectElement>) => {
+      const value = event.target.value;
+      setSelectedValue(value);
+      onChange(value);
+    },
+    [onChange],
+  );
 
   return (
     <div className="relative">
@@ -46,15 +49,7 @@ const Dropdown: React.FC<DropdownProps> = ({
         onChange={handleSelectChange}
         disabled={disabled}
         aria-label={placeholder}
-        className={`
-          block w-full px-4 py-2
-          bg-white border border-gray-300 rounded-md
-          shadow-sm appearance-none
-          focus:outline-none focus:ring-2 focus:ring-blue-500
-          disabled:bg-gray-100 disabled:cursor-not-allowed
-          transition duration-150 ease-in-out
-          ${className}
-        `}
+        className={`block w-full appearance-none rounded-md border border-gray-300 bg-white px-4 py-2 shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:cursor-not-allowed disabled:bg-gray-100 ${className} `}
       >
         <option value="" disabled>
           {placeholder}
@@ -71,9 +66,9 @@ const Dropdown: React.FC<DropdownProps> = ({
       </select>
 
       {/* 自定义下拉箭头 */}
-      <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2">
         <svg
-          className="w-4 h-4 text-gray-400"
+          className="h-4 w-4 text-gray-400"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
           fill="currentColor"

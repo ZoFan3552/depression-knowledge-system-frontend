@@ -1,33 +1,33 @@
 export interface Cause {
-    name: string;
+  name: string;
 }
 
 export interface Diagnosis {
-    name: string;
+  name: string;
 }
 
 export interface Medication {
-    name: string;
+  name: string;
 }
 
 export interface Prevention {
-    name: string;
+  name: string;
 }
 
 export interface Symptom {
-    name: string;
+  name: string;
 }
 
 export interface Treatment {
-    name: string;
+  name: string;
 }
 
 export interface Depression {
-    name: string;
-    symptoms: Set<Symptom>;
-    causes: Set<Cause>;
-    diagnoses: Set<Diagnosis>;
-    preventions: Set<Prevention>;
-    treatments: Set<Treatment>;
-    medications: Set<Medication>;
+  name: string;
+  symptoms: Set<Symptom>;
+  causes: Set<Cause>;
+  diagnoses: Set<Diagnosis>;
+  preventions: Set<Prevention>;
+  treatments: Set<Treatment>;
+  medications: Set<Medication>;
 }

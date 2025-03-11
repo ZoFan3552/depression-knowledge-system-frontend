@@ -1,5 +1,5 @@
-import { GraphNode } from '@/types/Graph';
-import React from 'react';
+import { GraphNode } from "@/types/graph";
+import React from "react";
 
 interface LegendItem {
   type: string;
@@ -16,31 +16,33 @@ interface LegendProps {
  */
 const GraphLegend: React.FC<LegendProps> = ({ nodes }) => {
   // 将配置对象转换为图例项数组
-  const config = nodes.reduce((acc, node) => {
-    acc[node.type] = node.color;
-    return acc;
-  }, {} as Record<string, string>);
+  const config = nodes.reduce(
+    (acc, node) => {
+      acc[node.type] = node.color;
+      return acc;
+    },
+    {} as Record<string, string>,
+  );
 
-  const legendItems: LegendItem[] = Object.entries(config).map(([type, color]) => ({
-    type,
-    color
-  }));
+  const legendItems: LegendItem[] = Object.entries(config).map(
+    ([type, color]) => ({
+      type,
+      color,
+    }),
+  );
 
   return (
-    <div className="bg-white/90 backdrop-blur-sm 
-                    rounded-lg shadow-lg p-3 flex items-center gap-6">
+    <div className="flex items-center gap-6 rounded-lg bg-white/90 p-3 shadow-lg backdrop-blur-sm">
       {legendItems.map(({ type, color }) => (
         <div key={type} className="flex items-center gap-2">
           {/* 颜色指示器 */}
           <div
-            className="w-4 h-4 rounded-full border border-gray-200"
+            className="h-4 w-4 rounded-full border border-gray-200"
             style={{ backgroundColor: color }}
             aria-hidden="true"
           />
           {/* 类型标签 */}
-          <span className="text-sm font-medium text-gray-700">
-            {type}
-          </span>
+          <span className="text-sm font-medium text-gray-700">{type}</span>
         </div>
       ))}
     </div>
