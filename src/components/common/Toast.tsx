@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { X } from "lucide-react";
+import { X, CheckCircle, AlertCircle, Info } from "lucide-react";
 
 export type ToastProps = {
   message: string;
@@ -31,7 +31,7 @@ const notifyListeners = () => {
 // 添加新的 toast
 export const showToast = (
   message: string,
-  duration: number = 3000,
+  duration: number = 2500,
   type: "info" | "success" | "error" = "info",
   onCloseCallback?: () => void,
 ) => {
@@ -83,32 +83,47 @@ const getToastContainer = () => {
 };
 
 const Toast: React.FC<ToastProps> = ({ message, onClose, type = "info" }) => {
+  // 获取图标组件
+  const getIcon = () => {
+    switch (type) {
+      case "success":
+        return <CheckCircle className="text-green-500" size={20} />;
+      case "error":
+        return <AlertCircle className="text-red-500" size={20} />;
+      case "info":
+      default:
+        return <Info className="text-blue-500" size={20} />;
+    }
+  };
+
   const getToastStyles = () => {
     switch (type) {
       case "error":
-        return "bg-red-50 border border-red-200 text-red-700";
+        return "bg-white border-l-4 border-l-red-500 text-gray-700";
       case "success":
-        return "bg-green-50 border border-green-200 text-green-700";
+        return "bg-white border-l-4 border-l-green-500 text-gray-700";
       case "info":
       default:
-        return "bg-blue-50 border border-blue-200 text-blue-700";
+        return "bg-white border-l-4 border-l-blue-500 text-gray-700";
     }
   };
 
   return (
     <div
-      className="fixed left-1/2 top-4 -translate-x-1/2 transform animate-toast-slide-down"
+      className="fixed left-1/2 top-6 -translate-x-1/2 transform animate-toast-slide-down"
       style={{ pointerEvents: "auto" }}
     >
       <div
-        className={`flex items-center gap-4 rounded-lg px-6 py-3 shadow-lg ${getToastStyles()}`}
+        className={`flex items-center gap-3 rounded-lg px-5 py-4 shadow-lg ${getToastStyles()}`}
       >
-        <span>{message}</span>
+        {getIcon()}
+        <span className="font-medium">{message}</span>
         <button
           onClick={onClose}
-          className="text-opacity-75 transition-colors hover:text-opacity-100"
+          className="ml-2 rounded-full p-1 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600"
+          aria-label="关闭"
         >
-          <X size={18} />
+          <X size={16} />
         </button>
       </div>
     </div>

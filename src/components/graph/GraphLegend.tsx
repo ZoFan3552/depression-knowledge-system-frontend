@@ -11,7 +11,6 @@ interface LegendItem {
  * 横向展示节点类型及其对应的颜色
  */
 const GraphLegend = () => {
-
   const graph = useGraphStore();
   const { nodes } = graph;
   // 将配置对象转换为图例项数组

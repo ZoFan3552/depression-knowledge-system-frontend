@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React, { useState } from "react";
 import { useGraphConfigStore } from "@/store/useGraphConfigStore"; // 假设store文件路径
@@ -107,33 +107,62 @@ const ControlPanel: React.FC = () => {
       {/* 触发按钮 */}
       <button
         onClick={togglePanel}
-        className="flex h-12 w-12 items-center justify-center rounded-r-lg bg-blue-500 text-white shadow-lg hover:bg-blue-600 transition-colors duration-200"
+        className="flex h-12 w-12 items-center justify-center rounded-r-lg bg-blue-500 text-white shadow-lg transition-colors duration-200 hover:bg-blue-600"
         aria-label="打开设置面板"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+          />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+          />
         </svg>
       </button>
 
       {/* 控制面板 */}
       {isPanelVisible && (
         <div
-          className="absolute left-0 top-[-232.5px] w-[334px] h-[525px] overflow-auto rounded-r-lg bg-white p-6 shadow-xl transition-all duration-300 border-r border-t border-b border-gray-200"
-          style={{ transform: isPanelVisible ? 'translateX(0)' : 'translateX(-100%)' }}
+          className="absolute left-0 top-[-232.5px] h-[525px] w-[334px] overflow-auto rounded-r-lg border-b border-r border-t border-gray-200 bg-white p-6 shadow-xl transition-all duration-300"
+          style={{
+            transform: isPanelVisible ? "translateX(0)" : "translateX(-100%)",
+          }}
         >
-          <div className="flex justify-between items-center mb-6">
+          <div className="mb-6 flex items-center justify-between">
             <h3 className="text-lg font-semibold text-gray-800">图形配置</h3>
             <button
               onClick={() => {
                 setExpandedSection("");
                 setIsPanelVisible(false);
               }}
-              className="p-1.5 rounded-full hover:bg-gray-100 text-gray-500 hover:text-gray-700 transition-colors duration-200"
+              className="rounded-full p-1.5 text-gray-500 transition-colors duration-200 hover:bg-gray-100 hover:text-gray-700"
               aria-label="关闭面板"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </button>
           </div>
@@ -161,7 +190,9 @@ const ControlPanel: React.FC = () => {
                 <Slider
                   {...SLIDER_CONFIGS.linkDistance}
                   value={graphConfig.linkDistance}
-                  onChange={(value) => handleConfigChange("linkDistance", value)}
+                  onChange={(value) =>
+                    handleConfigChange("linkDistance", value)
+                  }
                 />
 
                 <Slider
@@ -200,9 +231,8 @@ const ControlPanel: React.FC = () => {
                       checked={isShowLinkLabel}
                       onChange={(e) => {
                         setIsShowLinkLabel(e.target.checked);
-                        handleConfigChange("isShowLinkLabel", e.target.checked)
-                      }
-                      }
+                        handleConfigChange("isShowLinkLabel", e.target.checked);
+                      }}
                       className="form-checkbox h-4 w-4 rounded text-blue-600"
                     />
                     <span className="ml-2 text-sm font-medium text-gray-700">
@@ -296,7 +326,7 @@ const ControlPanel: React.FC = () => {
                 zoomStep: 1.5,
               });
             }}
-            className="mt-6 w-full rounded-md bg-blue-50 px-4 py-2.5 text-blue-600 font-medium transition-colors duration-200 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+            className="mt-6 w-full rounded-md bg-blue-50 px-4 py-2.5 font-medium text-blue-600 transition-colors duration-200 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
           >
             重置为默认配置
           </button>

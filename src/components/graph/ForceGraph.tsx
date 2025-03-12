@@ -327,7 +327,7 @@ const ForceGraph = () => {
   return (
     <div className="relative h-full w-full">
       {/* 控制面板 */}
-        <ControlPanel />
+      <ControlPanel />
       {/* 缩放控制按钮 */}
       <div className="absolute right-4 top-1/2 z-10 flex -translate-y-1/2 flex-col space-y-2">
         <button
@@ -399,7 +399,7 @@ const ForceGraph = () => {
 
       {/* 图例 */}
       <div className="absolute left-1/2 top-20 -translate-x-1/2">
-        <GraphLegend/>
+        <GraphLegend />
       </div>
 
       {/* SVG 容器 */}
