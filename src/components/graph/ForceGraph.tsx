@@ -327,27 +327,7 @@ const ForceGraph = () => {
   return (
     <div className="relative h-full w-full">
       {/* 控制面板 */}
-      <div className="absolute left-4 top-1/2 z-10 -translate-y-1/2 space-y-4 rounded-lg bg-white p-4 shadow-lg">
-        {/* <Dropdown
-          placeholder="请选择一个结点类型"
-          items={nodeTypes.map(n => ({ label: n, value: n }))}
-          defaultValue={''}
-          onChange={(type) => setNodeStyles(prev => ({ ...prev, currentType: type }))}
-        />
-        <ColorPicker
-          setCurrentColor={(color) => setNodeStyles(prev => ({ ...prev, currentColor: color }))}
-        />
-        <div className="flex justify-center items-center">
-          <button
-            className="bg-gray-200 shadow rounded px-6 py-2 font-semibold hover:bg-gray-300 transition-colors"
-            onClick={handleChangeNodeColorConfig}
-          >
-            确认更改
-          </button>
-        </div> */}
         <ControlPanel />
-      </div>
-
       {/* 缩放控制按钮 */}
       <div className="absolute right-4 top-1/2 z-10 flex -translate-y-1/2 flex-col space-y-2">
         <button
@@ -419,7 +399,7 @@ const ForceGraph = () => {
 
       {/* 图例 */}
       <div className="absolute left-1/2 top-20 -translate-x-1/2">
-        <GraphLegend nodes={nodes} />
+        <GraphLegend/>
       </div>
 
       {/* SVG 容器 */}

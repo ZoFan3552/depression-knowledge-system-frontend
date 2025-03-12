@@ -3,8 +3,8 @@
 import React from "react";
 import Link from "next/link";
 import { ClipboardPlus } from "lucide-react";
-import { ResponseCode } from "@/constant/ResponseCode";
-import { logout } from "@/services/UserService";
+import { ResponseCode } from "@/constant/responseCode";
+import { logout } from "@/services/userService";
 import { useRouter } from "next/navigation";
 import { showToast } from "../common/Toast";
 
@@ -86,7 +86,7 @@ const NavBar: React.FC = () => {
                   key={item.href}
                   href={item.href}
                   passHref
-                  className="rounded-md px-2 py-2 text-base font-semibold transition-colors duration-200 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-600 sm:px-3 sm:text-lg"
+                  className="rounded-md px-2 py-2 text-base font-semibold transition-colors duration-200 hover:bg-blue-700 sm:px-3 sm:text-lg"
                 >
                   {item.label}
                 </Link>
@@ -96,7 +96,7 @@ const NavBar: React.FC = () => {
             {/* 退出登录按钮 */}
             <button
               onClick={handleLogout}
-              className="rounded-md bg-red-600 px-4 py-2 text-base font-semibold text-white transition-colors duration-200 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-red-600 sm:text-lg"
+              className="rounded-md bg-red-600 px-4 py-2 text-base font-semibold text-white transition-colors duration-200 hover:bg-red-700 sm:text-lg"
             >
               退出登录
             </button>

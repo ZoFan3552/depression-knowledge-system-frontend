@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { register } from "@/services/UserService";
-import { ResponseCode } from "@/constant/ResponseCode";
+import { register } from "@/services/userService";
+import { ResponseCode } from "@/constant/responseCode";
 import { User } from "@/types/user";
 import { showToast } from "@/components/common/Toast";
 

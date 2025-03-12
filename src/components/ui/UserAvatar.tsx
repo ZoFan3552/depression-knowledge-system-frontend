@@ -2,8 +2,8 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { logout } from "@/services/UserService";
-import { ResponseCode } from "@/constant/ResponseCode";
+import { logout } from "@/services/userService";
+import { ResponseCode } from "@/constant/responseCode";
 import { showToast } from "../common/Toast";
 
 /**

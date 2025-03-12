@@ -1,7 +1,7 @@
 'use client'
 
 import { showToast } from "@/components/common/Toast";
-import { getAllDepressions } from "@/services/KnowledgeService";
+import { getAllDepressions } from "@/services/knowledgeService";
 
 const TestPage = () => {
     const handleResponse = async () => {

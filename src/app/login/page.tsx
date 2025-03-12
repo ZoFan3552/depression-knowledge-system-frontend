@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect } from "react"; // 添加useEffect用于组件生命周期管理
 import { useRouter } from "next/navigation"; // 用于页面导航
-import { login } from "@/services/UserService"; // 导入登录服务
-import { ResponseCode } from "@/constant/ResponseCode"; // 导入响应码常量
+import { login } from "@/services/userService"; // 导入登录服务
+import { ResponseCode } from "@/constant/responseCode"; // 导入响应码常量
 import { showToast } from "@/components/common/Toast"; // 导入提示组件
 import { z } from "zod";
 

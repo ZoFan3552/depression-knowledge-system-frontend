@@ -1,3 +1,4 @@
+import { useGraphStore } from "@/store/useGraphStore";
 import { GraphNode } from "@/types/graph";
 import React from "react";
 
@@ -5,16 +6,14 @@ interface LegendItem {
   type: string;
   color: string;
 }
-
-interface LegendProps {
-  nodes: GraphNode[];
-}
-
 /**
  * 力导向图图例组件
  * 横向展示节点类型及其对应的颜色
  */
-const GraphLegend: React.FC<LegendProps> = ({ nodes }) => {
+const GraphLegend = () => {
+
+  const graph = useGraphStore();
+  const { nodes } = graph;
   // 将配置对象转换为图例项数组
   const config = nodes.reduce(
     (acc, node) => {
