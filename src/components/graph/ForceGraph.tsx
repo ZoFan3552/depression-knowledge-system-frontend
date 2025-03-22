@@ -209,7 +209,7 @@ const ForceGraph = () => {
     // 添加节点文本标签
     nodeGroup
       .append("text")
-      .text((d) => d.id)
+      .text((d) => d.name)
       .attr("dx", nodeRadius + 10)
       .attr("dy", 5)
       .attr("text-anchor", "start")

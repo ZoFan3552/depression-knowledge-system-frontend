@@ -1,10 +1,12 @@
 export interface GraphNode extends d3.SimulationNodeDatum {
   id: string;
+  name: string;
   type: string;
   color: string;
 }
 
 export interface GraphLink extends d3.SimulationLinkDatum<GraphNode> {
+  type: string;
   text: string;
 }
 

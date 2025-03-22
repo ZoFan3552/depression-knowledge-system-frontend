@@ -311,6 +311,8 @@ const ControlPanel: React.FC = () => {
           {/* 重置按钮 */}
           <button
             onClick={() => {
+              setIsShowLinkLabel(false);
+              setExpandedSection('');
               // 重置为默认配置
               updateConfig({
                 width: 800,
@@ -319,6 +321,7 @@ const ControlPanel: React.FC = () => {
                 chargeStrength: -600,
                 nodeDefaultColor: "#4B5563",
                 linkDefaultColor: "#9CA3AF",
+                isShowLinkLabel: false,
                 linkDistance: 100,
                 linkWidth: 1.5,
                 maxZoom: 4,

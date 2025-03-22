@@ -1,140 +1,148 @@
-import {
-  Cause,
-  Diagnosis,
-  Depression,
-  Medication,
-  Prevention,
-  Symptom,
-  Treatment,
-} from "@/types/knowledge";
+import { Symptom, Risk, Therapy, Medication, Disease } from "@/types/depression";
 
-// 症状数据
-const symptoms: Symptom[] = [
-  { name: "持续的悲伤或空虚感" },
-  { name: "失眠或睡眠过多" },
-  { name: "食欲改变" },
-  { name: "注意力难以集中" },
-  { name: "疲劳或能量缺乏" },
-  { name: "无价值感或过度内疚" },
-  { name: "反复想到死亡或自杀" },
-];
-
-// 病因数据
-const causes: Cause[] = [
-  { name: "遗传因素" },
-  { name: "神经递质失衡" },
-  { name: "心理社会压力" },
-  { name: "重大生活变故" },
-  { name: "慢性疾病" },
-];
-
-// 诊断方法
-const diagnoses: Diagnosis[] = [
-  { name: "临床会谈评估" },
-  { name: "心理量表测评" },
-  { name: "精神状态检查" },
-  { name: "排除器质性疾病" },
-];
-
-// 预防措施
-const preventions: Prevention[] = [
-  { name: "保持规律的作息时间" },
-  { name: "建立健康的社交关系" },
-  { name: "适度运动" },
-  { name: "学习压力管理技巧" },
-  { name: "保持工作与生活平衡" },
-];
-
-// 治疗方案
-const treatments: Treatment[] = [
-  { name: "药物治疗" },
-  { name: "心理治疗" },
-  { name: "认知行为治疗" },
-  { name: "人际关系治疗" },
-  { name: "电疗(严重案例)" },
-];
-
-// 药物
-const medications: Medication[] = [
-  { name: "选择性五羟色胺再摄取抑制剂(SSRIs)" },
-  { name: "五羟色胺和去甲肾上腺素再摄取抑制剂(SNRIs)" },
-  { name: "三环类抗抑郁药" },
-  { name: "非典型抗抑郁药" },
-];
-
-// 疾病数据
-export const mockDepressions: Depression[] = [
+export const symptomsData: Symptom[] = [
   {
-    name: "轻度抑郁症",
-    symptoms: new Set([
-      symptoms[0], // 持续的悲伤或空虚感
-      symptoms[1], // 失眠或睡眠过多
-      symptoms[2], // 食欲改变
-      symptoms[4], // 疲劳或能量缺乏
-    ]),
-    causes: new Set([
-      causes[2], // 心理社会压力
-      causes[3], // 重大生活变故
-    ]),
-    diagnoses: new Set([
-      diagnoses[0], // 临床会谈评估
-      diagnoses[1], // 心理量表测评
-      diagnoses[2], // 精神状态检查
-    ]),
-    preventions: new Set([
-      preventions[0], // 规律作息
-      preventions[1], // 健康社交
-      preventions[2], // 适度运动
-      preventions[3], // 压力管理
-    ]),
-    treatments: new Set([
-      treatments[1], // 心理治疗
-      treatments[2], // 认知行为治疗
-      treatments[3], // 人际关系治疗
-    ]),
-    medications: new Set([
-      medications[0], // SSRIs
-      medications[3], // 非典型抗抑郁药
-    ]),
+    id: 1,
+    name: "头痛",
+    description: "持续性或间歇性头部疼痛，可能伴有恶心或视觉障碍",
+    createTime: "2025-03-20T10:00:00Z",
+    updateTime: "2025-03-21T12:00:00Z",
+    category: "身体",
+    severity: 7,
+    duration: "数小时至数天",
+    isCommon: true,
+    manifestations: '偏头痛;紧张性头痛;丛集性头痛'
   },
   {
-    name: "重度抑郁症",
-    symptoms: new Set([
-      symptoms[0], // 持续的悲伤或空虚感
-      symptoms[1], // 失眠或睡眠过多
-      symptoms[4], // 疲劳或能量缺乏
-      symptoms[5], // 无价值感或过度内疚
-      symptoms[6], // 反复想到死亡或自杀
-    ]),
-    causes: new Set([
-      causes[0], // 遗传因素
-      causes[1], // 神经递质失衡
-      causes[2], // 心理社会压力
-      causes[4], // 慢性疾病
-    ]),
-    diagnoses: new Set([
-      diagnoses[0], // 临床会谈评估
-      diagnoses[1], // 心理量表测评
-      diagnoses[2], // 精神状态检查
-      diagnoses[3], // 排除器质性疾病
-    ]),
-    preventions: new Set([
-      preventions[0], // 规律作息
-      preventions[1], // 健康社交
-      preventions[2], // 适度运动
-      preventions[3], // 压力管理
-      preventions[4], // 工作生活平衡
-    ]),
-    treatments: new Set([
-      treatments[0], // 药物治疗
-      treatments[1], // 心理治疗
-      treatments[2], // 认知行为治疗
-      treatments[4], // 电疗
-    ]),
-    medications: new Set([
-      medications[0], // SSRIs
-      medications[1], // SNRIs
-      medications[2], // 三环类抗抑郁药
-    ]),
+    id: 2,
+    name: "焦虑",
+    description: "过度担忧和紧张感，伴随心悸和出汗",
+    createTime: "2025-03-15T14:30:00Z",
+    updateTime: "2025-03-21T13:00:00Z",
+    category: "情绪",
+    severity: 5,
+    duration: "持续数周",
+    isCommon: true,
+    manifestations: "心悸;胸闷;失眠"
+  },
+];
+
+export const risksData: Risk[] = [
+  {
+    id: 1,
+    name: "高血压家族史",
+    description: "一级亲属中有高血压病史",
+    createTime: "2025-02-01T08:00:00Z",
+    updateTime: "2025-03-01T09:00:00Z",
+    category: "生物学",
+    impactFactor: 0.6,
+    evidenceLevel: "A",
+    preventiveMeasures: "定期体检;低盐饮食",
+  },
+  {
+    id: 2,
+    name: "长期吸烟",
+    description: "每天吸烟超过一包，持续超过5年",
+    createTime: "2025-02-10T10:30:00Z",
+    updateTime: "2025-03-05T11:00:00Z",
+    category: "行为",
+    impactFactor: 0.8,
+    evidenceLevel: "B",
+    preventiveMeasures: "戒烟计划;心理咨询",
+  },
+];
+
+export const therapiesData: Therapy[] = [
+  {
+    id: 1,
+    name: "认知行为疗法",
+    description: "通过改变负面思维模式来改善情绪",
+    createTime: "2025-03-01T09:00:00Z",
+    updateTime: "2025-03-20T10:00:00Z",
+    category: "心理治疗",
+    approach: "逐步识别和挑战负性思维",
+    durationCourse: "每周一次，持续3个月",
+    sideEffects: "可能引发短暂焦虑",
+  },
+  {
+    id: 2,
+    name: "物理治疗",
+    description: "针对肌肉和骨骼系统的康复训练",
+    createTime: "2025-03-02T09:00:00Z",
+    updateTime: "2025-03-20T10:00:00Z",
+    category: "物理治疗",
+    approach: "拉伸和力量训练",
+    durationCourse: "每周两次，持续2个月",
+    sideEffects: "肌肉酸痛",
+  },
+];
+
+export const medicationsData: Medication[] = [
+  {
+    id: 1,
+    name: "阿司匹林",
+    description: "非甾体抗炎药，用于缓解疼痛和降低发热",
+    createTime: "2025-03-01T08:00:00Z",
+    updateTime: "2025-03-21T09:00:00Z",
+    genericName: "Aspirin",
+    brandNames: "拜阿司匹林;博蒙",
+    drugClass: "NSAIDs",
+    mechanism: "抑制前列腺素合成",
+    dosage: "每日100mg",
+    administrationRoute: "口服",
+    sideEffects: "胃肠不适;胃溃疡",
+    contraindications: "胃溃疡病史;出血性疾病",
+    interactions: "华法林;地高辛",
+  },
+  {
+    id: 2,
+    name: "氯硝西泮",
+    description: "用于缓解焦虑和睡眠障碍的镇静药",
+    createTime: "2025-03-02T09:00:00Z",
+    updateTime: "2025-03-21T10:00:00Z",
+    genericName: "Clonazepam",
+    brandNames: "利眠宁",
+    drugClass: "苯二氮卓类",
+    mechanism: "增强GABA受体活性",
+    dosage: "每晚1mg",
+    administrationRoute: "口服",
+    sideEffects: "嗜睡;头晕",
+    contraindications: "严重呼吸抑制",
+    interactions: "酒精;巴比妥类",
+  },
+];
+
+export const diseasesData: Disease[] = [
+  {
+    id: 1,
+    name: "偏头痛",
+    description: "反复发作的剧烈头痛，通常伴有恶心和视觉障碍",
+    createTime: "2025-03-01T09:00:00Z",
+    updateTime: "2025-03-21T10:00:00Z",
+    medicalCode: "G43.0",
+    category: "神经系统疾病",
+    synonyms: "Migraine",
+    prevalenceRate: 0.12,
+    diagnosticCriteria: "根据国际头痛协会标准",
+    symptoms: new Set([symptomsData[0]]),
+    riskFactors: new Set([risksData[1]]),
+    treatments: new Set([therapiesData[0]]),
+    medications: new Set([medicationsData[0]]),
+  },
+  {
+    id: 2,
+    name: "广泛性焦虑障碍",
+    description: "持续性焦虑和担忧，影响日常生活",
+    createTime: "2025-03-02T10:00:00Z",
+    updateTime: "2025-03-21T11:00:00Z",
+    medicalCode: "F41.1",
+    category: "精神障碍",
+    synonyms: "GAD",
+    prevalenceRate: 0.05,
+    diagnosticCriteria: "DSM-5标准",
+    symptoms: new Set([symptomsData[1]]),
+    riskFactors: new Set([risksData[0]]),
+    treatments: new Set([therapiesData[0]]),
+    medications: new Set([medicationsData[1]]),
   },
 ];

@@ -1,11 +1,30 @@
 import { create } from "zustand";
-import { GraphState } from "@/types/graph";
-import { convertDepressionArrayToGraph } from "@/utils/graphUtil";
-import { mockDepressions } from "@/test/mockGraphData";
+import { GraphLink, GraphNode, GraphState } from "@/types/graph";
+import { generateCompleteGraph } from "@/utils/depressionUtils";
+import {
+  diseasesData,
+  medicationsData,
+  risksData,
+  symptomsData,
+  therapiesData,
+} from "@/test/mockGraphData";
+
+const entities = [
+  diseasesData,
+  symptomsData,
+  medicationsData,
+  risksData,
+  therapiesData,
+];
+let mockNodes: GraphNode[] = [],
+  mockLinks: GraphLink[] = [];
+const graphData = generateCompleteGraph(entities);
+mockNodes = graphData.nodes;
+mockLinks = graphData.links;
 
 export const useGraphStore = create<GraphState>((set, get) => ({
-  nodes: convertDepressionArrayToGraph(mockDepressions).nodes,
-  links: convertDepressionArrayToGraph(mockDepressions).links,
+  nodes: mockNodes,
+  links: mockLinks,
   extraInfo: null,
   loading: false,
   error: null,
