@@ -40,7 +40,9 @@ const GraphLegend = () => {
             aria-hidden="true"
           />
           {/* 类型标签 */}
-          <span className="text-sm font-medium text-gray-700">{type}</span>
+          <span className="text-sm font-medium text-gray-700">
+            {type.toLocaleUpperCase()}
+          </span>
         </div>
       ))}
     </div>

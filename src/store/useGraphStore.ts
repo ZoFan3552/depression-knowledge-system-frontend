@@ -40,13 +40,6 @@ export const useGraphStore = create<GraphState>((set, get) => ({
       error,
     }));
   },
-
-  fetchNodeTypes: () => {
-    return get().nodes.map((node) => node.type);
-  },
-  fetchNodesColors: () => {
-    return get().nodes.map((node) => node.color);
-  },
   changeGraphNodeColor: (nodeId, newColor) => {
     const newNodes = get().nodes.map((node) =>
       node.id === nodeId ? { ...node, color: newColor } : node,

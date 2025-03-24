@@ -30,7 +30,6 @@ export interface Symptom {
   manifestations?: string; // 具体表现形式
 }
 
-
 export interface Risk {
   id?: number; // 主键，数据库生成
   name: string; // 实体名称
@@ -43,7 +42,6 @@ export interface Risk {
   preventiveMeasures?: string; // 预防措施
 }
 
-
 export interface Therapy {
   id?: number; // 主键，数据库生成
   name: string; // 实体名称
@@ -55,7 +53,6 @@ export interface Therapy {
   durationCourse?: string; // 治疗周期
   sideEffects?: string; // 副作用
 }
-
 
 export interface Medication {
   id?: number; // 主键，数据库生成
@@ -73,4 +70,3 @@ export interface Medication {
   contraindications?: string; // 禁忌症
   interactions?: string; // 药物相互作用
 }
-

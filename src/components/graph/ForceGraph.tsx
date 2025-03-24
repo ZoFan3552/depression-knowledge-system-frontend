@@ -7,6 +7,7 @@ import ControlPanel from "./ControlPanel";
 import GraphLegend from "./GraphLegend";
 import { useGraphConfigStore } from "@/store/useGraphConfigStore";
 import { useGraphStore } from "@/store/useGraphStore";
+import NodeDetailsPanel from "./NodeDetailsPanel";
 
 const ForceGraph = () => {
   const graphConfig = useGraphConfigStore();
@@ -38,6 +39,9 @@ const ForceGraph = () => {
     null,
   );
   const zoomRef = useRef<d3.ZoomBehavior<SVGSVGElement, unknown> | null>(null);
+
+  const [selectedNode, setSelectedNode] = useState<GraphNode | null>(null);
+  const [isPanelOpen, setIsPanelOpen] = useState(false);
 
   /**
    * 节点拖拽行为处理器
@@ -218,6 +222,16 @@ const ForceGraph = () => {
       .style("pointer-events", "none")
       .style("user-select", "none");
 
+    // 定义点击事件
+    nodeGroup.on("click", (event, d) => {
+      const nodeData = nodes.find((n) => n.id === d.id);
+      if (nodeData) {
+        setSelectedNode(nodeData);
+        setIsPanelOpen(true);
+        event.stopPropagation(); // 防止事件冒泡
+      }
+    });
+
     /**
      * 配置模拟器的每帧更新函数
      * 更新所有元素的位置
@@ -324,6 +338,11 @@ const ForceGraph = () => {
     }, [nodes, width, height, centerX, centerY]),
   };
 
+  // 处理面板关闭
+  const handleClosePanel = () => {
+    setIsPanelOpen(false);
+  };
+
   return (
     <div className="relative h-full w-full">
       {/* 控制面板 */}
@@ -401,6 +420,12 @@ const ForceGraph = () => {
       <div className="absolute left-1/2 top-20 -translate-x-1/2">
         <GraphLegend />
       </div>
+
+      <NodeDetailsPanel
+        node={selectedNode}
+        isOpen={isPanelOpen}
+        onClose={handleClosePanel}
+      />
 
       {/* SVG 容器 */}
       <div className="h-full w-full bg-gray-50">

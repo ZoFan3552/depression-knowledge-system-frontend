@@ -1,8 +1,11 @@
+import { Disease, Symptom, Risk, Therapy, Medication } from "./depression";
+
 export interface GraphNode extends d3.SimulationNodeDatum {
   id: string;
   name: string;
   type: string;
   color: string;
+  originalData: Disease | Symptom | Risk | Therapy | Medication;
 }
 
 export interface GraphLink extends d3.SimulationLinkDatum<GraphNode> {
@@ -17,8 +20,6 @@ export interface GraphState {
   loading: boolean;
   error: string | null;
 
-  fetchNodesColors: () => string[];
-  fetchNodeTypes: () => string[];
   changeGraphNodeColor: (nodeId: string, newColor: string) => void;
   changeGraphLegend: (nodeType: string, newColor: string) => void;
   setLoading: (loading: boolean) => void;
