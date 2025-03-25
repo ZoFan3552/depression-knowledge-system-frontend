@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { GraphNode } from "@/types/graph";
 import {
   Disease,
@@ -44,7 +44,39 @@ const NodeDetailsPanel: React.FC<NodeDetailsPanelProps> = ({
     };
   }, [isOpen, onClose]);
 
-  if (!isOpen || !nodeDetails) return null;
+  // 添加一个状态来控制面板的可见性和动画
+  const [visible, setVisible] = useState(false);
+
+  // 监听isOpen的变化，控制可见性
+  useEffect(() => {
+    if (isOpen) {
+      // 当打开时，立即显示面板（但位于屏幕外）
+      setVisible(true);
+      // 使用requestAnimationFrame确保DOM更新后再应用动画
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          if (panelRef.current) {
+            panelRef.current.classList.remove("translate-x-full");
+            panelRef.current.classList.add("translate-x-0");
+          }
+        });
+      });
+    } else {
+      // 关闭时，先应用动画
+      if (panelRef.current) {
+        panelRef.current.classList.remove("translate-x-0");
+        panelRef.current.classList.add("translate-x-full");
+      }
+      // 等待动画完成后隐藏面板
+      const timer = setTimeout(() => {
+        setVisible(false);
+      }, 300); // 与动画持续时间相同
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen]);
+
+  // 如果没有节点数据或不应该可见，则不渲染
+  if (!nodeDetails || (!isOpen && !visible)) return null;
 
   // 获取节点类型和对应的样式，使用提供的颜色标准
   const getNodeTypeInfo = (
@@ -244,14 +276,18 @@ const NodeDetailsPanel: React.FC<NodeDetailsPanelProps> = ({
     <>
       {/* 半透明背景遮罩 */}
       <div
-        className="fixed inset-0 z-40 bg-black bg-opacity-30 backdrop-blur-sm transition-opacity duration-300"
+        className={`fixed inset-0 z-40 bg-black backdrop-blur-sm transition-opacity duration-300 ${
+          isOpen
+            ? "bg-opacity-30 opacity-100"
+            : "pointer-events-none bg-opacity-0 opacity-0"
+        }`}
         onClick={onClose}
       />
 
       {/* 信息展示面板 */}
       <div
         ref={panelRef}
-        className="fixed right-0 top-[70px] z-50 flex h-[670px] w-80 flex-col overflow-hidden rounded-l-lg bg-white shadow-xl transition-transform duration-300 md:w-96"
+        className="fixed right-0 top-[70px] z-50 flex h-[670px] w-80 translate-x-full flex-col overflow-hidden rounded-l-lg bg-white shadow-xl transition-transform duration-300 ease-in-out md:w-96"
         style={{ maxHeight: "calc(100vh - 70px)" }}
       >
         {/* 标题区域 */}
